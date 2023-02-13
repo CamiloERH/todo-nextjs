@@ -1,15 +1,18 @@
-import { initializeApp } from 'firebase/app';
+import { initializeApp, getApps, getApp } from 'firebase/app';
 import { getFirestore } from 'firebase/firestore/lite';
+import { getStorage } from "firebase/storage";
 
 // TODO: Replace the following with your app's Firebase project configuration
 const firebaseConfig = {
-    apiKey: "AIzaSyCrmoApMdf4Uc0BMoPmnG4jyH5C6YJkJVk",
-    authDomain: "todo-next-119d8.firebaseapp.com",
-    projectId: "todo-next-119d8",
-    storageBucket: "todo-next-119d8.appspot.com",
-    messagingSenderId: "787118285524",
-    appId: "1:787118285524:web:4b7caeed1ae1e0a7c09141"
-  };
+  apiKey: "AIzaSyDtkAWg78Ojhv2nhqZru0e0SZii_EW8L2Y",
+  authDomain: "todo-next-dev.firebaseapp.com",
+  projectId: "todo-next-dev",
+  storageBucket: "todo-next-dev.appspot.com",
+  messagingSenderId: "527443206417",
+  appId: "1:527443206417:web:e583842cc15a30d0926cb0"
+};
 
-export const FirebaseApp = initializeApp(firebaseConfig);
-export const FirebaseDB = getFirestore( FirebaseApp );
+export const FirebaseApp = !getApps().length ? initializeApp(firebaseConfig) : getApp();
+export const FirebaseDB = getFirestore(FirebaseApp);
+export const storage = getStorage(FirebaseApp);
+
